@@ -56,6 +56,13 @@ void ATP_ThirdPersonCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Input
+
+void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+{
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
@@ -64,13 +71,6 @@ void ATP_ThirdPersonCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
-}
-
-//////////////////////////////////////////////////////////////////////////
-// Input
-
-void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
-{
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
 		

@@ -8,8 +8,13 @@ ADynamicPawnController::ADynamicPawnController() : indexOfDataTable{ 0 } {
 }
 
 void ADynamicPawnController::Spawn() {
-
+	FVector PawnLocation;
+	FRotator PawnRotation;
 	if (GetPawn()) {
+
+		PawnLocation = GetPawn()->GetActorLocation();
+		PawnRotation = GetPawn()->GetActorRotation();
+
 		GetPawn()->Destroy();
 	}
 
@@ -28,21 +33,20 @@ void ADynamicPawnController::Spawn() {
 		if(dataRow) {
 			
 			TSubclassOf<APawn> PawnReference = dataRow->PawnClass;
-			//CurrentPawnType = dataRow->PawnType;
 
 			if (World) {
 				FActorSpawnParameters SpawnParams;
 				SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-				FVector Location = { 50, 50, 200 };
-				FRotator SpawnRotation = { 0, 0, 0 };
+				/*FVector Location = { 50, 50, 200 };
+				FRotator SpawnRotation = { 0, 0, 0 };*/
 
 				if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer())) {
 					Subsystem->ClearAllMappings();
 				}
 				
 
-				APawn* SpawnedPawn = World->SpawnActor<APawn>(PawnReference, Location, SpawnRotation, SpawnParams);
+				APawn* SpawnedPawn = World->SpawnActor<APawn>(PawnReference, PawnLocation, PawnRotation, SpawnParams);
 
 				SetupInputComponent();
 
@@ -64,7 +68,6 @@ void ADynamicPawnController::Spawn() {
 void ADynamicPawnController::BeginPlay()
 {
 	Super::BeginPlay();
-	Spawn();
 }
 
 void ADynamicPawnController::SetupInputComponent() {
