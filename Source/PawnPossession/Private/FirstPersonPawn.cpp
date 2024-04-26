@@ -25,13 +25,6 @@ AFirstPersonPawn::AFirstPersonPawn()
 	FloatingPawnMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
 }
 
-//void AFirstPersonPawn::MoveForward(float Value) {
-//
-//}
-//void AFirstPersonPawn::MoveRight(float Value) {
-//
-//}
-
 // Called when the game starts or when spawned
 void AFirstPersonPawn::BeginPlay()
 {
@@ -83,7 +76,6 @@ void AFirstPersonPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		FEnhancedActionKeyMapping& MoveActionUpKeyMapping = InputMappingContext->MapKey(MoveAction, EKeys::E);
 		MoveActionUpKeyMapping.Modifiers.Add(ZYXSwizzleAxisModifier);
 
-
 		FEnhancedActionKeyMapping& MoveActionDownKeyMapping = InputMappingContext->MapKey(MoveAction, EKeys::Q);
 		MoveActionDownKeyMapping.Modifiers.Add(ZYXSwizzleAxisModifier);
 		MoveActionDownKeyMapping.Modifiers.Add(MoveActionNegateModifier);
@@ -105,6 +97,7 @@ void AFirstPersonPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 		if (const APlayerController* PlayerController = Cast<APlayerController>(Controller)) {
 			if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer())) {
+				//Subsystem->ClearAllMappings();
 				Subsystem->AddMappingContext(InputMappingContext, 0);
 			}
 		}
@@ -133,6 +126,4 @@ void AFirstPersonPawn::Move(const FInputActionValue& Value)
 	AddMovementInput(ForwardDirection, MovementInput.X);
 	AddMovementInput(RightDirection, MovementInput.Y);
 	AddMovementInput(UpDirection, MovementInput.Z);
-
 }
-
