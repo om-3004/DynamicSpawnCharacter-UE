@@ -9,6 +9,7 @@
 #include "Components/SphereComponent.h"
 #include "Components/CapsuleComponent.h"
 
+#include "BaseCharacter.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
@@ -31,6 +32,9 @@ class PAWNPOSSESSION_API AFirstPersonPawn : public APawn
 
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	UFloatingPawnMovement* FloatingPawnMovement;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPawnAttributeAsset* PawnAttributeAsset;
 
 
 public:

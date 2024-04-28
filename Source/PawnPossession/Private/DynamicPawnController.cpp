@@ -18,7 +18,7 @@ void ADynamicPawnController::Spawn() {
 		GetPawn()->Destroy();
 	}
 
-	UDataTable* dataTable = LoadObject<UDataTable>(nullptr, TEXT("/Script/Engine.DataTable'/Game/Blueprint/PawnSelection.PawnSelection'"));
+	UDataTable* dataTable = LoadObject<UDataTable>(this, TEXT("/Script/Engine.DataTable'/Game/Blueprint/PawnSelection.PawnSelection'"));
 	if (dataTable) {
 		TArray<FName> rowNames = dataTable->GetRowNames();
 
@@ -38,9 +38,6 @@ void ADynamicPawnController::Spawn() {
 				FActorSpawnParameters SpawnParams;
 				SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-				/*FVector Location = { 50, 50, 200 };
-				FRotator SpawnRotation = { 0, 0, 0 };*/
-
 				if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer())) {
 					Subsystem->ClearAllMappings();
 				}
@@ -52,9 +49,17 @@ void ADynamicPawnController::Spawn() {
 
 				if (SpawnedPawn) {
 					Possess(SpawnedPawn);
+					//DisplayAttributes();
 					if (dataRow->PawnType == EPawnType::TopDown) {
 						bShowMouseCursor = true;
-						DefaultMouseCursor = EMouseCursor::GrabHand;
+						bEnableClickEvents = true;
+						bEnableMouseOverEvents = true;
+					}
+					else {
+
+						bShowMouseCursor = false;
+						bEnableClickEvents = false;
+						bEnableMouseOverEvents = false;
 					}
 				}
 			}
@@ -88,3 +93,8 @@ void ADynamicPawnController::SetupInputComponent() {
 	}
 
 }
+
+//void ADynamicPawnController::DisplayAttributes(UPawnAttributeAsset* PawnAttrtibute)
+//{
+//
+//}

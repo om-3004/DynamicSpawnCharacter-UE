@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
 
+#include "../Public/BaseCharacter.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
@@ -16,7 +17,7 @@
 #include "TP_TopDownCharacter.generated.h"
 
 UCLASS(Blueprintable)
-class ATP_TopDownCharacter : public ACharacter
+class ATP_TopDownCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 

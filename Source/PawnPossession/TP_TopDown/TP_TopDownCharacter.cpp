@@ -49,6 +49,8 @@ ATP_TopDownCharacter::ATP_TopDownCharacter()
 
 	CachedDestination = FVector::ZeroVector;
 	FollowTime = 0.f;
+
+	PawnAttributeAsset = LoadObject<UPawnAttributeAsset>(this, TEXT("/Script/PawnPossession.PawnAttributeAsset'/Game/Blueprint/TopDown_Properties.TopDown_Properties'"));
 }
 
 void ATP_TopDownCharacter::Tick(float DeltaSeconds)

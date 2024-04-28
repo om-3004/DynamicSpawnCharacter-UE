@@ -5,11 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+
+#include "../Public/BaseCharacter.h"
 #include "TP_ThirdPersonCharacter.generated.h"
 
 
 UCLASS(config=Game)
-class ATP_ThirdPersonCharacter : public ACharacter
+class ATP_ThirdPersonCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 
@@ -36,6 +38,8 @@ class ATP_ThirdPersonCharacter : public ACharacter
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 
 public:
 	ATP_ThirdPersonCharacter();
