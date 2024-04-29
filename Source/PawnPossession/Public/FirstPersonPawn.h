@@ -33,13 +33,12 @@ class PAWNPOSSESSION_API AFirstPersonPawn : public APawn
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	UFloatingPawnMovement* FloatingPawnMovement;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UPawnAttributeAsset* PawnAttributeAsset;
-
-
 public:
 	// Sets default values for this pawn's properties
 	AFirstPersonPawn();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPawnAttributeAsset* FPPPawnAttributes;
 
 protected:
 	// Called when the game starts or when spawned

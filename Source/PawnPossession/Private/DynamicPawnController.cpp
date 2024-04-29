@@ -49,7 +49,14 @@ void ADynamicPawnController::Spawn() {
 
 				if (SpawnedPawn) {
 					Possess(SpawnedPawn);
-					//DisplayAttributes();
+
+					if (dataRow->PawnType == EPawnType::FirstPerson) {
+						DisplayAttributes(Cast<AFirstPersonPawn>(SpawnedPawn)->FPPPawnAttributes);
+					}
+					else {
+						DisplayAttributes(Cast<ABaseCharacter>(SpawnedPawn)->TopDownTPPAttributes);
+					}
+
 					if (dataRow->PawnType == EPawnType::TopDown) {
 						bShowMouseCursor = true;
 						bEnableClickEvents = true;
@@ -93,8 +100,3 @@ void ADynamicPawnController::SetupInputComponent() {
 	}
 
 }
-
-//void ADynamicPawnController::DisplayAttributes(UPawnAttributeAsset* PawnAttrtibute)
-//{
-//
-//}

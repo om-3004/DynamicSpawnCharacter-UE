@@ -15,6 +15,8 @@
 #include "GameFramework/Pawn.h"
 
 #include "PawnAttributeAsset.h"
+#include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "FirstPersonPawn.h"
 
 #include "PawnPossession/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "DynamicPawnController.generated.h"
@@ -53,8 +55,11 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
 
-	/*UFUNCTION(BlueprintImplementable)
-	void DisplayAttributes(UPawnAttributeAsset* PawnAttrtibute);*/
+	/*UPROPERTY(EditAnywhere)
+	UPawnAttributeAsset* PawnAttrtibute;*/
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void DisplayAttributes(UPawnAttributeAsset* PawnAttrtibute);
 
 public:
 	ADynamicPawnController();
